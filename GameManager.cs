@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private StateMachine fsm;
+    private StateMachine stateMachine;
+    private GameStates gameState;
 
     // Start is called before the first frame update
     void Start()
     {
-        fsm = new StateMachine (new IdleState (fsm));
+        stateMachine = new StateMachine ();
+        gameState = new GameStates (stateMachine);
+        stateMachine.InitState (gameState.Idle ());
     }
 
     // Update is called once per frame
     void Update()
     {
-        fsm.Update ();
+        stateMachine.UpdateState ();
     }
 
     void OnGUI () {
-        string content = fsm != null ? fsm.currentState != null ? fsm.currentState.name : "no state" : "no state";
+        string content = stateMachine != null ? stateMachine.currentState != null ? stateMachine.currentState.name : "no state" : "no state";
         GUILayout.Label ($"<color='black'><size=12> Game State: {content}</size></color>");
     }
 }

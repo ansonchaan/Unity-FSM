@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class StateMachine
 {
     public BaseState lastState;
     public BaseState currentState;
 
-    public StateMachine (BaseState startState)
+    public void InitState (BaseState startState)
     {
         currentState = startState;
         currentState.Enter ();
     }
 
-    public void Update()
+    public void UpdateState()
     {
         if (currentState != null)
             currentState.Update ();
     }
 
-    public void FixedUpdate ()
+    public void FixedUpdateState ()
     {
         if (currentState != null)
             currentState.FixedUpdate ();
@@ -30,8 +27,9 @@ public class StateMachine
         if(currentState != null)
             currentState.Exit ();
 
+        newState.Enter ();
+
         lastState = currentState;
         currentState = newState;
-        currentState.Enter ();
     }
 }
