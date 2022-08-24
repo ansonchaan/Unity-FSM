@@ -1,13 +1,15 @@
 
 public class GameStates : StateMachine {
     StateMachine stateMachine;
+    GameManager gameManager;
 
-    public GameStates (StateMachine _stateMachine) {
+    public GameStates (StateMachine _stateMachine, GameManager _gameManager) {
         stateMachine = _stateMachine;
+        gameManager = _gameManager;
     }
 
     public BaseState Idle () {
-        return new IdleState (stateMachine);
+        return new IdleState (stateMachine, gameManager);
     }
 
     //public BaseState Win () {

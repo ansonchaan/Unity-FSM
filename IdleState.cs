@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    public IdleState (StateMachine stateMachine) : base ("Idle", stateMachine) { }
+    protected GameManager gameManager;
+
+    public IdleState (StateMachine stateMachine, GameManager _gameManager) : base ("Idle", stateMachine) {
+        gameManager = _gameManager;
+    }
 
     public override void Enter () {
+
     }
 }

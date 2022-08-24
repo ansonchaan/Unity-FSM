@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         stateMachine = new StateMachine ();
-        gameState = new GameStates (stateMachine);
+        gameState = new GameStates (stateMachine, this);
         stateMachine.InitState (gameState.Idle ());
     }
 
