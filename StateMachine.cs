@@ -27,9 +27,8 @@ public class StateMachine
         if(currentState != null)
             currentState.Exit ();
 
-        newState.Enter ();
-
         lastState = currentState;
         currentState = newState;
+        newState.Enter ();
     }
 }
